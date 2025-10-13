@@ -8,7 +8,7 @@ USE Disney_Sondages;
 CREATE TABLE sondage (
     id INT PRIMARY KEY AUTO_INCREMENT,
     titre VARCHAR(255) NOT NULL,
-    categorie ENUM('Film', 'Parc', 'Personnage', 'Musique', 'Attraction', 'Méchant') NOT NULL,
+    categorie ENUM('Film', 'Parc', 'Personnage', 'Musique', 'Attraction', 'Mechant') NOT NULL,
     description TEXT,
     date_creation DATE
 );
@@ -47,7 +47,6 @@ VALUES ('Quel est votre film Disney préféré ?', 'Film', 'Sondage sur les film
 
 INSERT INTO question (sondage_id, texte_question) VALUES (1, 'Parmi ces films Disney, lequel préférez-vous ?');
 
--- Récupération automatique des IDs via AUTO_INCREMENT
 INSERT INTO reponse_option (question_id, texte_option) VALUES
 (1, 'Le Roi Lion'),
 (1, 'La Reine des Neiges'),
@@ -91,8 +90,8 @@ VALUES ('Quelle chanson Disney vous touche le plus ?', 'Musique', 'Sondage sur l
 INSERT INTO question (sondage_id, texte_question) VALUES (4, 'Parmi ces chansons Disney, laquelle préférez-vous ?');
 
 INSERT INTO reponse_option (question_id, texte_option) VALUES
-(4, 'Libérée, délivrée (La Reine des Neiges)'),
-(4, 'Ce rêve bleu (Aladdin)'),
+(4, 'Liberee, delivree (La Reine des Neiges)'),
+(4, 'Ce reve bleu (Aladdin)'),
 (4, 'Hakuna Matata (Le Roi Lion)'),
 (4, 'L histoire de la vie (Le Roi Lion)');
 
@@ -106,22 +105,22 @@ INSERT INTO question (sondage_id, texte_question) VALUES (5, 'Quelle attraction 
 
 INSERT INTO reponse_option (question_id, texte_option) VALUES
 (5, 'Space Mountain'),
-(5, 'Pirates des Caraïbes'),
+(5, 'Pirates des Caraibes'),
 (5, 'It s a Small World'),
 (5, 'Big Thunder Mountain');
 
 INSERT INTO resultat (reponse_id, nombre_votes) VALUES (17, 260), (18, 380), (19, 150), (20, 340);
 
--- Sondage 6 : Méchants Disney
+-- Sondage 6 : Mechants Disney
 INSERT INTO sondage (titre, categorie, description, date_creation)
-VALUES ('Quel méchant Disney est le plus marquant ?', 'Méchant', 'Sondage sur les antagonistes les plus charismatiques de Disney', '2025-10-03');
+VALUES ('Quel mechant Disney est le plus marquant ?', 'Mechant', 'Sondage sur les antagonistes les plus charismatiques de Disney', '2025-10-03');
 
-INSERT INTO question (sondage_id, texte_question) VALUES (6, 'Quel est selon vous le meilleur méchant Disney ?');
+INSERT INTO question (sondage_id, texte_question) VALUES (6, 'Quel est selon vous le meilleur mechant Disney ?');
 
 INSERT INTO reponse_option (question_id, texte_option) VALUES
-(6, 'Maléfique'),
+(6, 'Malefique'),
 (6, 'Scar'),
 (6, 'Ursula'),
-(6, 'Hadès');
+(6, 'Hades');
 
 INSERT INTO resultat (reponse_id, nombre_votes) VALUES (21, 270), (22, 310), (23, 180), (24, 220);
