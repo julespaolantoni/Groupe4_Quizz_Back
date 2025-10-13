@@ -1,11 +1,12 @@
 version: '3.1'
+
 services:
   database:
     container_name: disney_sondages_db
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: admin123   
       MYSQL_DATABASE: Disney_Sondages
     ports:
       - "3306:3306"
