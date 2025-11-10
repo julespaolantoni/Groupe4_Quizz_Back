@@ -72,6 +72,15 @@ docker compose up -d
 
 Ensuite, adaptez `application.properties` pour pointer vers le service DB du compose et démarrez l'application comme ci‑dessus.
 
+## Informations de connexion pour l'administration
+
+Pour les besoins de développement et de test, un compte administrateur est préconfiguré. Vous pouvez vous connecter avec les identifiants suivants :
+
+*   **Identifiant (Email)** : `admin@site.com`
+*   **Mot de passe** : `admin123`
+
+Ces identifiants sont destinés à faciliter l'accès aux fonctionnalités d'administration (si implémentées) et ne devraient pas être utilisés en production.
+
 Script d'initialisation
 -----------------------
 Un script d'exemple `initdb/disney_sondages.sql` est inclus. Vous pouvez l'utiliser pour préremplir la base (via Docker init ou exécution manuelle).
