@@ -80,7 +80,9 @@ Pour les besoins de développement et de test, un compte administrateur est pré
 *   **Mot de passe** : `admin123`
 
 Ces identifiants sont destinés à faciliter l'accès aux fonctionnalités d'administration (si implémentées) et ne devraient pas être utilisés en production.
+Avec les id, nous pouvons créer des sondages.
 
+Source d'amélioration : Gérer les users, supprimer les users, modifier les users, modifier des sondages, supprimer des sondages.
 Script d'initialisation
 -----------------------
 Un script d'exemple `initdb/disney_sondages.sql` est inclus. Vous pouvez l'utiliser pour préremplir la base (via Docker init ou exécution manuelle).
@@ -118,32 +120,13 @@ Dépannage & erreurs fréquentes
   - Vérifications et solutions :
     1. Assurez-vous que `JAVA_HOME` pointe vers le JDK 17+ et que `mvnw.cmd` utilise ce JDK. Dans cmd :
 
-```cmd
-echo %JAVA_HOME%
-%JAVA_HOME%\bin\java -version
-mvnw.cmd -v
-```
-
-    2. Forcer le plugin `maven-compiler-plugin` dans `pom.xml` pour `source` et `target` 17 si nécessaire.
-    3. Nettoyer le build et forcer la mise à jour des dépendances :
-
-```cmd
-mvnw.cmd clean -U package
-```
-
-    4. Recherchez et retirez toute dépendance ou configuration qui ajouterait d'anciens JAR d'outils Java (ex : `tools.jar`) sur le classpath.
-
+    
 - Problèmes de connexion à la base
   - Vérifiez l'URL, le nom d'utilisateur/mot de passe; démarrez la DB (Docker) et appliquez le script d'init si besoin.
 
 - Erreurs CORS (le frontend ne peut pas appeler l'API)
   - En développement : utilisez un proxy Angular (`proxy.conf.json`) côté frontend ou activez CORS dans le backend (via `WebConfig` ou `@CrossOrigin`). Voir `src/main/java/com/takima/backskeleton/config/WebConfig.java`.
 
-Conseils pour CI/Build
-----------------------
-- Utiliser le Maven Wrapper (`mvnw` / `mvnw.cmd`) pour garantir la même version de Maven sur les CI.
-- Configurer des variables d'environnement pour les credentials DB sur CI/CD.
-- Exécuter `mvnw.cmd test` pour lancer les tests unitaires avant le build.
 
 Commandes utiles (Windows - cmd)
 --------------------------------
@@ -159,22 +142,7 @@ mvnw.cmd spring-boot:run
 ```cmd
 mvnw.cmd clean package -DskipTests
 ```
-
-- Exécuter les tests :
-
-```cmd
-mvnw.cmd test
-```
-
 Ressources et support
 ---------------------
 - Consulter les sources dans `src/main/java/com/takima/backskeleton` pour comprendre le comportement réel des endpoints et la configuration.
 - Pour les questions liées au code, ouvrez une issue dans le dépôt avec le message d'erreur complet et les étapes pour reproduire.
-
-Licence / Contribuer
---------------------
-- Respectez la licence du projet (si définie) et les conventions de contribution. Ouvrez une issue ou une PR pour proposer des corrections ou améliorations.
-
----
-
-Si vous voulez, j'ajoute aussi automatiquement un `proxy.conf.json` d'exemple au frontend, ou j'harmonise le README racine pour pointer vers ces deux README locaux. Indiquez ce que vous préférez et je l'implémente.
