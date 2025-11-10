@@ -6,7 +6,7 @@ USE Disney_Sondages;
 
 -- Table des sondages
 CREATE TABLE sondage (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
     titre VARCHAR(255) NOT NULL,
     categorie ENUM('Film', 'Parc', 'Personnage', 'Musique', 'Attraction', 'Mechant') NOT NULL,
     description TEXT,
@@ -15,24 +15,24 @@ CREATE TABLE sondage (
 
 -- Table des questions
 CREATE TABLE question (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    sondage_id INT,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    sondage_id BIGINT,
     texte_question VARCHAR(255),
     FOREIGN KEY (sondage_id) REFERENCES sondage(id) ON DELETE CASCADE
 );
 
 -- Table des options de réponse
 CREATE TABLE reponse_option (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    question_id INT,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    question_id BIGINT,
     texte_option VARCHAR(255),
     FOREIGN KEY (question_id) REFERENCES question(id) ON DELETE CASCADE
 );
 
 -- Table des résultats (nombre de votes)
 CREATE TABLE resultat (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    reponse_id INT,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    reponse_id BIGINT,
     nombre_votes INT DEFAULT 0,
     FOREIGN KEY (reponse_id) REFERENCES reponse_option(id) ON DELETE CASCADE
 );

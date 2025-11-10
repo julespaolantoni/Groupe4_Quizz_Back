@@ -91,10 +91,15 @@ public class QuestionServiceImpl implements QuestionService {
         Question question = questionRepository.findById(questionId)
                 .orElseThrow(() -> new ResourceNotFoundException("Question non trouvée avec l'id: " + questionId));
 
-        ReponseOption option = modelMapper.map(optionDTO, ReponseOption.class);
+        // Création manuelle de l'entité pour éviter que ModelMapper ne tente de mapper des relations
+        ReponseOption option = new ReponseOption();
+        option.setTexteOption(optionDTO.getTexteOption());
         option.setQuestion(question);
+
+        // Sauvegarde de l'option
         option = reponseOptionRepository.save(option);
 
+        // Retourner le DTO mappé depuis l'entité sauvegardée
         return modelMapper.map(option, ReponseOptionDTO.class);
     }
 }
